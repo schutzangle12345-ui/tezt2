@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tezt2 | BookLux AI Luxury Concierge</title>
+    <link rel="icon" href="favicon-tezt2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700;900&display=swap');
+
+        :root {
+            --color-primary: #DA2025;
+            --color-primary-dark: #b91b1f; /* Darkened #DA2025 by 15% */
+            --color-background: #000000;
+            --color-surface: #111111;
+            --color-text: #FFFFFF;
+            --color-text-muted: #A0A0A0;
+            --color-border: #222222;
+            --color-accent: #FFFFFF;
+            --font-sans: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+            --radius-pill: 9999px;
+            --radius-card: 40px;
+            --section-padding: 100px 5%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s ease;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .btn-pill {
+            background-color: var(--color-primary);
+            color: var(--color-accent);
+            padding: 14px 32px;
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-pill:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 5% 100px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .secondary-link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 4px;
+        }
+
+        .secondary-link:hover {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .hero-visual {
+            position: relative;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-card);
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+        }
+
+        .mock-app {
+            width: 280px;
+            height: 500px;
+            background-color: #000;
+            border: 8px solid #333;
+            border-radius: 40px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mock-chat {
+            background-color: var(--color-surface);
+            padding: 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            width: 80%;
+        }
+
+        .mock-chat.user {
+            align-self: flex-end;
+            background-color: var(--color-primary);
+            color: var(--color-accent);
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--section-padding);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 80px;
+            max-width: 800px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--color-surface);
+            padding: 60px 40px;
+            border-radius: var(--radius-card);
+            border: 1px solid var(--color-border);
+            transition: 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--color-primary);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-primary);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--color-text);
+        }
+
+        .feature-card p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: var(--section-padding);
+            background-color: var(--color-surface);
+            border-radius: 60px;
+            margin: 40px 2%;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step-number {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            color: var(--color-primary);
+            opacity: 0.3;
+            position: absolute;
+            top: -40px;
+            left: 0;
+            z-index: 0;
+        }
+
+        .step-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .step-content p {
+            color: var(--color-text-muted);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: var(--section-padding);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--color-background);
+            padding: 40px;
+            border-radius: var(--radius-card);
+            border: 1px solid var(--color-border);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .author-info p {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 120px 5%;
+            text-align: center;
+            background-color: var(--color-primary);
+            color: var(--color-accent);
+            margin: 80px 2%;
+            border-radius: 60px;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            margin-bottom: 24px;
+        }
+
+        .final-cta p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .final-cta .btn-pill {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-size: 1.2rem;
+            padding: 20px 60px;
+        }
+
+        .final-cta .btn-pill:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 5% 40px 5%;
+            border-top: 1px solid var(--color-border);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            color: var(--color-text-muted);
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-text-muted);
+            transition: 0.3s;
+        }
+
+        .social-icons svg:hover {
+            fill: var(--color-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 140px;
+            }
+            .hero-content p {
+                margin: 0 auto 40px auto;
+            }
+            .hero-actions {
+                align-items: center;
+            }
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-visual {
+                height: 400px;
+            }
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+  <base href="/booklux/" />
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">
+            <img src="logo-tezt2.png" alt="tezt2 logo" style="height:40px;object-fit:contain">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="auth.html">Sign In</a>
+            <a href="https://tes.test" class="btn-pill">Book Now</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>One Chat.<br>Infinite Luxury.</h1>
+                <p>The AI concierge for the 0.1%. Book private jets, yachts, villas, and chefs through a single, seamless chat interface.</p>
+                <div class="hero-actions">
+                    <a href="https://tes.test" class="btn-pill">Start My Booking</a>
+                    <a href="about.html" class="secondary-link">How it works →</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="mock-app">
+                    <div class="mock-chat">I need a heavy jet from London to Dubai for 6 people this Friday.</div>
+                    <div class="mock-chat user">Searching options... Found Global 6000 and Challenger 650. Would you like to see the catering menus?</div>
+                    <div class="mock-chat">Yes, and add a private chef for the villa in Palm Jumeirah.</div>
+                    <div class="mock-chat user">Chef Alessandro is available. Itinerary updated. Tap to confirm.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="section-header">
+                <h2>Why high net worth travelers choose tezt2</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✈️</div>
+                    <h3>Unified Luxury</h3>
+                    <p>Stop juggling vendors. One chat handles your jet charter, yacht rental, villa stay, and private driver across any continent.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>Absolute Clarity</h3>
+                    <p>Transparent pricing and curated itineraries. Compare trusted options for heavy jets or Mediterranean yachts without the opaque broker fees.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Risk Managed</h3>
+                    <p>Plans change. We handle the contracts, deposits, and re-bookings, ensuring you avoid unnecessary fees and confusion.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works">
+            <div class="section-header">
+                <h2>Seamless from brief to arrival</h2>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <span class="step-number">01</span>
+                    <div class="step-content">
+                        <h3>Brief Your Concierge</h3>
+                        <p>Describe your dates, locations, and preferences once. Our AI understands the nuances of luxury travel requirements.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">02</span>
+                    <div class="step-content">
+                        <h3>Review Selection</h3>
+                        <p>Receive a curated list of jets, yachts, or villas. View clear price ranges and example itineraries to decide quickly.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">03</span>
+                    <div class="step-content">
+                        <h3>Confirm & Relax</h3>
+                        <p>One-tap booking for everything. When your schedule shifts, tell us once and we'll update every service provider instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="section-header">
+                <h2>Trusted by global leaders</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The efficiency is unmatched. I booked a jet from Nice and a villa in St. Tropez in less time than it usually takes to get a single quote."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>James W.</h4>
+                            <p>Venture Partner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"tezt2 is my personal assistant's favorite tool. It handles the complexity of multi-stop itineraries so they can focus on higher priorities."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Elena S.</h4>
+                            <p>Family Office Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Finally, a service that understands yacht APA and empty-leg logistics without me having to explain it three times."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Marcus T.</h4>
+                            <p>Tech Entrepreneur</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="final-cta">
+            <h2>Experience Unrivaled Service</h2>
+            <p>Ready to plan your next journey? Your AI concierge is waiting.</p>
+            <a href="https://tes.test" class="btn-pill">Access the Concierge</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="logo-tezt2.png" alt="tezt2 logo" style="height:30px;object-fit:contain">
+                </div>
+                <p class="footer-desc">Redefining luxury travel through intelligent automation and curated service networks.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="auth.html">Sign In</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Charter Agreement</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 tezt2. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
